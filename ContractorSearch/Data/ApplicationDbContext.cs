@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ContractorSearch.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,6 +14,9 @@ namespace ContractorSearch.Data
             : base(options)
         {
         }
+
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Contractor> Contractors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
