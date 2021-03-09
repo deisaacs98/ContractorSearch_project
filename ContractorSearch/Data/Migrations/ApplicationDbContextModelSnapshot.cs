@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ContractorSearch.Data.Migrations
+namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -31,9 +31,6 @@ namespace ContractorSearch.Data.Migrations
 
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Appointment")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -133,15 +130,15 @@ namespace ContractorSearch.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f6a4088d-fdaa-4dd7-ae62-39ebb020c1f3",
-                            ConcurrencyStamp = "16d467f2-1896-4db6-ba65-9479d6fe8baf",
+                            Id = "76c14683-ea5a-4360-a936-ecf9f8e8c6bd",
+                            ConcurrencyStamp = "100fc2d0-b9e9-4253-b328-c91a71028654",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "f4ad8cdd-f80d-4cf0-81c1-88d79a0da270",
-                            ConcurrencyStamp = "2bd56455-931f-44e5-a224-fc3615bf271c",
+                            Id = "f9f27e97-1a89-4b34-b327-b061536ee8d4",
+                            ConcurrencyStamp = "e8c733b9-82d0-4b7a-bef3-1a3ec74af7f2",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
