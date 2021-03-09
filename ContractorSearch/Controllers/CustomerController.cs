@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ContractorSearch.Data;
 using ContractorSearch.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace ContractorSearch.Controllers
 {
@@ -24,8 +25,23 @@ namespace ContractorSearch.Controllers
         // GET: Customer
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cust = _context.Customers.Where(cust0 => cust0.IdentityUserId ==
+            userId).FirstOrDefault();
+
+
+            if (cust == null)
+            {
+                // Redirect to create action
+                return RedirectToAction("Create");
+            }
+            else
+            {
+                var applicationDbContext = _context.Appointments.Where(a => a.CustomerId == cust.Id).ToListAsync();
+                return View(await applicationDbContext);
+            }
         }
 
         public IActionResult Chat()
