@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContractorSearch.Data;
 using ContractorSearch.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContractorSearch.Controllers
 {
+    [Authorize(Roles = "Customer")]
     public class CustomerController : Controller
     {
         private readonly ApplicationDbContext _context;

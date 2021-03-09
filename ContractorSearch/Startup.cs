@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContractorSearch.Hubs;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using ContractorSearch.ActionFilters;
 
 namespace ContractorSearch
 {
@@ -35,6 +38,13 @@ namespace ContractorSearch
                 .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
+            services.AddScoped<ClaimsPrincipal>(s =>
+ s.GetService<IHttpContextAccessor>().HttpContext.User);
+            services.AddControllers(config =>
+            {
+                config.Filters.Add(typeof(GlobalRouting));
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSignalR();
