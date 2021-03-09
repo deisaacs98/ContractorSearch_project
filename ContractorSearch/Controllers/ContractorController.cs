@@ -28,6 +28,11 @@ namespace ContractorSearch.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
         // GET: Contractor/Details/5
         public async Task<IActionResult> Details(int? id)
         {
