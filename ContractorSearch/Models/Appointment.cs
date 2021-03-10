@@ -18,6 +18,7 @@ namespace ContractorSearch.Models
         public double Amount { get; set; } //changed from Amound (might have been typo)
         public int Rating { get; set; }
         public string Review { get; set; }
+        public bool ReservedAppointment { get; set; } //added this
         [ForeignKey("Contractor")]
         public int ContractorId { get; set; }
         public Contractor Contractor { get; set; }

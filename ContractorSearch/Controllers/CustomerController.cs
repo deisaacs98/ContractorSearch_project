@@ -37,6 +37,21 @@ namespace ContractorSearch.Controllers
             }
         }
 
+        public async Task<IActionResult> AvailableContractorsIndex()
+        {
+            //var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
+
+            var applicationDbContext = _context.Contractors.ToListAsync();
+            return View(await applicationDbContext);
+        }
+        public async Task<IActionResult> AvailableAppointments(int? id)
+        {
+            //var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
+
+            var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == id).ToListAsync();
+            return View(await applicationDbContext);
+        }
+
         public IActionResult Chat()
         {
             return View();
