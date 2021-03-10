@@ -1,0 +1,76 @@
+﻿@model ContractorSearch.Models.Appointment
+
+@{
+    ViewData["Title"] = "CreateAppointments";
+}
+
+<h1>CreateAppointments</h1>
+
+<h4>Appointment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateAppointments">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ApptDate" class="control-label"></label>
+                <input asp-for="ApptDate" class="form-control" />
+                <span asp-validation-for="ApptDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="PaymentMethod" class="control-label"></label>
+                <input asp-for="PaymentMethod" class="form-control" />
+                <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="DeliveryMethod" class="control-label"></label>
+                <input asp-for="DeliveryMethod" class="form-control" />
+                <span asp-validation-for="DeliveryMethod" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="Review" class="control-label"></label>
+                <input asp-for="Review" class="form-control" />
+                <span asp-validation-for="Review" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ReservedAppointment" /> @Html.DisplayNameFor(model => model.ReservedAppointment)
+                </label>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="ContractorId" class="control-label"></label>
+                <select asp-for="ContractorId" class ="form-control" asp-items="ViewBag.ContractorId"></select>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

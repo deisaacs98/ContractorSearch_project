@@ -26,10 +26,10 @@ namespace ContractorSearch.ActionFilters
                     context.Result = new RedirectToActionResult("Index",
                     "Customer", null);
                 }
-                else if (_claimsPrincipal.IsInRole("Employee"))
+                else if (_claimsPrincipal.IsInRole("Contractor"))
                 {
                     context.Result = new RedirectToActionResult("Index",
-                    "Employee", null);
+                    "Contractor", null);
                 }
             }
         }
