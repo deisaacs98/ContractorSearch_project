@@ -18,7 +18,7 @@ namespace ContractorSearch.Models
         public string City { get; set; }
         public string State { get; set; }
         public int ZipCode { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
