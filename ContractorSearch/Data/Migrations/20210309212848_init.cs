@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContractorSearch.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -165,6 +165,7 @@ namespace ContractorSearch.Migrations
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<int>(nullable: false),
                     PhoneNumber = table.Column<int>(nullable: false),
+                    Appointment = table.Column<DateTime>(nullable: false),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -206,15 +207,58 @@ namespace ContractorSearch.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "76c14683-ea5a-4360-a936-ecf9f8e8c6bd", "100fc2d0-b9e9-4253-b328-c91a71028654", "Customer", "CUSTOMER" });
+            migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApptDate = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<string>(nullable: true),
+                    PaymentMethod = table.Column<string>(nullable: true),
+                    DeliveryMethod = table.Column<string>(nullable: true),
+                    Amount = table.Column<double>(nullable: false),
+                    Rating = table.Column<int>(nullable: false),
+                    Review = table.Column<string>(nullable: true),
+                    ContractorId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Contractors_ContractorId",
+                        column: x => x.ContractorId,
+                        principalTable: "Contractors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "f9f27e97-1a89-4b34-b327-b061536ee8d4", "e8c733b9-82d0-4b7a-bef3-1a3ec74af7f2", "Contractor", "CONTRACTOR" });
+                values: new object[] { "b8eec0ba-d4a2-4c8f-ab7e-474d79ccce2c", "4bdc7a2a-204f-4aa1-a25e-981b7509673a", "Customer", "CUSTOMER" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "bd525e6f-ef2b-439c-8d82-be14038c1c42", "20453266-42fb-4638-88db-d36964d30160", "Contractor", "CONTRACTOR" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_ContractorId",
+                table: "Appointments",
+                column: "ContractorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_CustomerId",
+                table: "Appointments",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -268,6 +312,9 @@ namespace ContractorSearch.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Appointments");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

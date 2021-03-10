@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210309222853_Init")]
-    partial class Init
+    [Migration("20210309212848_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,49 @@ namespace ContractorSearch.Migrations
                 .HasAnnotation("ProductVersion", "3.1.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ContractorSearch.Models.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("ApptDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ContractorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DeliveryMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Review")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractorId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Appointments");
+                });
 
             modelBuilder.Entity("ContractorSearch.Models.Contractor", b =>
                 {
@@ -33,6 +76,9 @@ namespace ContractorSearch.Migrations
 
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Appointment")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -132,15 +178,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "76c14683-ea5a-4360-a936-ecf9f8e8c6bd",
-                            ConcurrencyStamp = "100fc2d0-b9e9-4253-b328-c91a71028654",
+                            Id = "b8eec0ba-d4a2-4c8f-ab7e-474d79ccce2c",
+                            ConcurrencyStamp = "4bdc7a2a-204f-4aa1-a25e-981b7509673a",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "f9f27e97-1a89-4b34-b327-b061536ee8d4",
-                            ConcurrencyStamp = "e8c733b9-82d0-4b7a-bef3-1a3ec74af7f2",
+                            Id = "bd525e6f-ef2b-439c-8d82-be14038c1c42",
+                            ConcurrencyStamp = "20453266-42fb-4638-88db-d36964d30160",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
@@ -313,6 +359,21 @@ namespace ContractorSearch.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ContractorSearch.Models.Appointment", b =>
+                {
+                    b.HasOne("ContractorSearch.Models.Contractor", "Contractor")
+                        .WithMany()
+                        .HasForeignKey("ContractorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ContractorSearch.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ContractorSearch.Models.Contractor", b =>
