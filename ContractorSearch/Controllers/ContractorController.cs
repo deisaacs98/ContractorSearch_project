@@ -85,6 +85,29 @@ namespace ContractorSearch.Controllers
             return View(contractor);
         }
 
+        // GET: Contractor/Create
+        public IActionResult CreateAppointments()
+        {
+            return View();
+        }
+
+        // POST: Contractor/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAppointments(Appointment appointment)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(appointment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+           // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", appointment.IdentityUserId);
+            return View(appointment);
+        }
+
         // GET: Contractor/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
