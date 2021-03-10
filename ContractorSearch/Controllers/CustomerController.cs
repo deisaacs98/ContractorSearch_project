@@ -23,7 +23,7 @@ namespace ContractorSearch.Controllers
         }
 
         // GET: Customer
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
@@ -31,10 +31,23 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
+            else if(_context.Contractors.Count() == 0)
+            {
+                return RedirectToAction(nameof(UnavailablePage));
+            }
+             else if (_context.Appointments.Count() == 0)
+            {
+                return RedirectToAction(nameof(AvailableContractorsIndex));
+            }
             else
             {
-                return View(customer);
+                var applicationDbContext = _context.Appointments.Where(a => a.CustomerId == customer.Id).ToListAsync();
+                return View(await applicationDbContext);
             }
+        }
+        public IActionResult UnavailablePage()
+        {
+            return View();
         }
 
         public async Task<IActionResult> AvailableContractorsIndex()

@@ -4,16 +4,14 @@ using ContractorSearch.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210310163222_init")]
-    partial class init
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,9 +78,6 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Appointment")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -92,8 +87,8 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -136,8 +131,8 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("MiddleInitial")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -181,15 +176,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6fe7f84c-17bd-470c-9d2d-6deb8283fcb7",
-                            ConcurrencyStamp = "c4d89aeb-8f42-4e21-9e47-b4c47b34f282",
+                            Id = "c0996e10-f52a-4c8f-9ee0-b780b9f89870",
+                            ConcurrencyStamp = "e43bbf90-f377-477a-8e42-0cb526a49d60",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "0f0ae9f7-2d33-4a22-9a7e-5e862811db68",
-                            ConcurrencyStamp = "3582af73-9b16-427d-8107-b5d3cab7ed91",
+                            Id = "3587fe40-167a-4d05-826c-c17e6f45f4fa",
+                            ConcurrencyStamp = "dea6bed0-3596-4de3-a5a7-075365fdf480",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });

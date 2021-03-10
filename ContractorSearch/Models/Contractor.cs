@@ -19,8 +19,6 @@ namespace ContractorSearch.Models
         public string State { get; set; }
         public int ZipCode { get; set; }
         public string PhoneNumber { get; set; }
-        [NotMapped]
-        public List<DateTime> Appointments { get; set; } //may need to be a list of some sort
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

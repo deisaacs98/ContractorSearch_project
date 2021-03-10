@@ -23,7 +23,7 @@ namespace ContractorSearch.Controllers
         }
 
         // GET: Contractor
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var contractor = _context.Contractors.Where(c => c.IdentityUserId == userId).FirstOrDefault();
@@ -31,9 +31,14 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
+            else if(_context.Appointments.Count() == 0)
+            {
+                return RedirectToAction(nameof(CreateAppointments));
+            }
             else
             {
-                return View(contractor);
+                var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contractor.Id).ToListAsync();
+                return View(await applicationDbContext);
             }
         }
 
@@ -88,6 +93,7 @@ namespace ContractorSearch.Controllers
         // GET: Contractor/Create
         public IActionResult CreateAppointments()
         {
+            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -98,13 +104,18 @@ namespace ContractorSearch.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAppointments(Appointment appointment)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var contr = _context.Contractors.Where(contr0 => contr0.IdentityUserId ==
+            userId).FirstOrDefault();
             if (ModelState.IsValid)
             {
+                appointment.ContractorId = contr.Id;
+                appointment.CustomerId = 1; //need to leave this a variable
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-           // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", appointment.IdentityUserId);
+            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", appointment.IdentityUserId);
             return View(appointment);
         }
 
