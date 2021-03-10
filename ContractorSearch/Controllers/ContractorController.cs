@@ -23,23 +23,17 @@ namespace ContractorSearch.Controllers
         }
 
         // GET: Contractor
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            //var applicationDbContext = _context.Contractors.Include(c => c.IdentityUser);
-
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var contr = _context.Contractors.Where(contr0 => contr0.IdentityUserId ==
-            userId).FirstOrDefault();
-
-            if (contr == null)
+            var contractor = _context.Contractors.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+            if (contractor == null)
             {
-                // Redirect to create action
-                return RedirectToAction("Create");
+                return RedirectToAction(nameof(Create));
             }
             else
             {
-                var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contr.Id).ToListAsync();
-                return View(await applicationDbContext);
+                return View(contractor);
             }
         }
 
