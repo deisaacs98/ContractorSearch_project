@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210310182651_Customer model update")]
-    partial class Customermodelupdate
+    [Migration("20210310185710_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,9 +80,6 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Appointment")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -92,8 +89,8 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -136,8 +133,8 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("MiddleInitial")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -181,15 +178,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "946153df-6245-4591-a68a-2249ad2cf322",
-                            ConcurrencyStamp = "733fe002-8200-45af-843a-43dd1974a814",
+                            Id = "c0996e10-f52a-4c8f-9ee0-b780b9f89870",
+                            ConcurrencyStamp = "e43bbf90-f377-477a-8e42-0cb526a49d60",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "69e03c83-31ee-47c4-88f9-2ad9d5118d32",
-                            ConcurrencyStamp = "cffed9db-016b-44d7-90cb-0f0f02fc1025",
+                            Id = "3587fe40-167a-4d05-826c-c17e6f45f4fa",
+                            ConcurrencyStamp = "dea6bed0-3596-4de3-a5a7-075365fdf480",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
