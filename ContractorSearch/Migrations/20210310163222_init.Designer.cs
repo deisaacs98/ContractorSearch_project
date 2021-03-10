@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210309212848_init")]
+    [Migration("20210310163222_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,9 @@ namespace ContractorSearch.Migrations
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
+
+                    b.Property<bool>("ReservedAppointment")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
@@ -178,15 +181,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b8eec0ba-d4a2-4c8f-ab7e-474d79ccce2c",
-                            ConcurrencyStamp = "4bdc7a2a-204f-4aa1-a25e-981b7509673a",
+                            Id = "6fe7f84c-17bd-470c-9d2d-6deb8283fcb7",
+                            ConcurrencyStamp = "c4d89aeb-8f42-4e21-9e47-b4c47b34f282",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "bd525e6f-ef2b-439c-8d82-be14038c1c42",
-                            ConcurrencyStamp = "20453266-42fb-4638-88db-d36964d30160",
+                            Id = "0f0ae9f7-2d33-4a22-9a7e-5e862811db68",
+                            ConcurrencyStamp = "3582af73-9b16-427d-8107-b5d3cab7ed91",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });

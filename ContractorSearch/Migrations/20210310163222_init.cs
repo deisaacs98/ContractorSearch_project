@@ -220,6 +220,7 @@ namespace ContractorSearch.Migrations
                     Amount = table.Column<double>(nullable: false),
                     Rating = table.Column<int>(nullable: false),
                     Review = table.Column<string>(nullable: true),
+                    ReservedAppointment = table.Column<bool>(nullable: false),
                     ContractorId = table.Column<int>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false)
                 },
@@ -243,12 +244,12 @@ namespace ContractorSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b8eec0ba-d4a2-4c8f-ab7e-474d79ccce2c", "4bdc7a2a-204f-4aa1-a25e-981b7509673a", "Customer", "CUSTOMER" });
+                values: new object[] { "6fe7f84c-17bd-470c-9d2d-6deb8283fcb7", "c4d89aeb-8f42-4e21-9e47-b4c47b34f282", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "bd525e6f-ef2b-439c-8d82-be14038c1c42", "20453266-42fb-4638-88db-d36964d30160", "Contractor", "CONTRACTOR" });
+                values: new object[] { "0f0ae9f7-2d33-4a22-9a7e-5e862811db68", "3582af73-9b16-427d-8107-b5d3cab7ed91", "Contractor", "CONTRACTOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ContractorId",
