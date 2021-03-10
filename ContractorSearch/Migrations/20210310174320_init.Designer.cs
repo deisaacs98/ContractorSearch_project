@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210310163222_init")]
+    [Migration("20210310174320_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,15 +181,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6fe7f84c-17bd-470c-9d2d-6deb8283fcb7",
-                            ConcurrencyStamp = "c4d89aeb-8f42-4e21-9e47-b4c47b34f282",
+                            Id = "612d4394-0e07-4bca-be19-536629d652b0",
+                            ConcurrencyStamp = "e9c91ec2-7ebd-49fc-ac37-1688790b89f7",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "0f0ae9f7-2d33-4a22-9a7e-5e862811db68",
-                            ConcurrencyStamp = "3582af73-9b16-427d-8107-b5d3cab7ed91",
+                            Id = "a271ec22-0248-4e4e-afec-14dbbf8a6060",
+                            ConcurrencyStamp = "7b865975-0a78-4cfa-a471-609e8a042679",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });

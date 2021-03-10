@@ -94,6 +94,7 @@ namespace ContractorSearch.Controllers
         // GET: Contractor/Create
         public IActionResult CreateAppointments()
         {
+            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -104,13 +105,18 @@ namespace ContractorSearch.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAppointments(Appointment appointment)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var contr = _context.Contractors.Where(contr0 => contr0.IdentityUserId ==
+            userId).FirstOrDefault();
             if (ModelState.IsValid)
             {
+                appointment.ContractorId = contr.Id;
+                appointment.CustomerId = 1; //need to leave this a variable
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-           // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", appointment.IdentityUserId);
+            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", appointment.IdentityUserId);
             return View(appointment);
         }
 
