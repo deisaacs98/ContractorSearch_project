@@ -42,7 +42,10 @@ namespace ContractorSearch.Controllers
 
         public IActionResult Chat()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var contractor = _context.Contractors.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+
+            return View(contractor);
         }
 
         public async Task<IActionResult> Details(int? id)

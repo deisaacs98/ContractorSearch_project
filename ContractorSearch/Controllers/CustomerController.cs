@@ -43,7 +43,10 @@ namespace ContractorSearch.Controllers
 
         public IActionResult Chat()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+
+            return View(customer);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -153,9 +156,12 @@ namespace ContractorSearch.Controllers
 
         public async Task<IActionResult> Reserve(int id)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
             var appointment = await _context.Appointments.FirstOrDefaultAsync(m => m.Id == id);
             appointment.ReservedAppointment = true;
             appointment.Status = "Reserved";
+            appointment.CustomerId = customer.Id;
             _context.Appointments.Update(appointment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
