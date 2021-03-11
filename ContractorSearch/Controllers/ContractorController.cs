@@ -110,7 +110,7 @@ namespace ContractorSearch.Controllers
             if (ModelState.IsValid)
             {
                 appointment.ContractorId = contr.Id;
-                appointment.CustomerId = 1; //need to leave this a variable
+                appointment.CustomerId = null; //need to leave this a variable
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

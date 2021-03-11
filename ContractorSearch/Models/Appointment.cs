@@ -23,7 +23,7 @@ namespace ContractorSearch.Models
         public int ContractorId { get; set; }
         public Contractor Contractor { get; set; }
         [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         public Customer Customer { get; set; }
     }
    

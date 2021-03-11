@@ -35,7 +35,7 @@ namespace ContractorSearch.Migrations
                     b.Property<int>("ContractorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("DeliveryMethod")
@@ -176,15 +176,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5830d814-413b-4912-928c-0e189e868d5b",
-                            ConcurrencyStamp = "1d9da168-e21d-4497-8208-c6fbab4687d7",
+                            Id = "2dfc8a2c-baa2-4404-a892-fda2c9bce66b",
+                            ConcurrencyStamp = "e9182649-f01c-4120-ade2-db77153089a3",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "81b37279-9057-47bd-b5e7-767ae5c1f11b",
-                            ConcurrencyStamp = "b098bab0-f695-4f43-8cea-a9c97615a2fe",
+                            Id = "8248ed72-dc28-43fa-9cce-54f83ddc8eda",
+                            ConcurrencyStamp = "0fdcf215-54c1-4636-b3a0-0b13a7f36f3f",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
@@ -369,9 +369,7 @@ namespace ContractorSearch.Migrations
 
                     b.HasOne("ContractorSearch.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("ContractorSearch.Models.Contractor", b =>

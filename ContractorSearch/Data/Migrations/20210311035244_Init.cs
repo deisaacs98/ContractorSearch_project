@@ -221,7 +221,7 @@ namespace ContractorSearch.Migrations
                     Review = table.Column<string>(nullable: true),
                     ReservedAppointment = table.Column<bool>(nullable: false),
                     ContractorId = table.Column<int>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: false)
+                    CustomerId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -237,18 +237,18 @@ namespace ContractorSearch.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "5830d814-413b-4912-928c-0e189e868d5b", "1d9da168-e21d-4497-8208-c6fbab4687d7", "Customer", "CUSTOMER" });
+                values: new object[] { "2dfc8a2c-baa2-4404-a892-fda2c9bce66b", "e9182649-f01c-4120-ade2-db77153089a3", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "81b37279-9057-47bd-b5e7-767ae5c1f11b", "b098bab0-f695-4f43-8cea-a9c97615a2fe", "Contractor", "CONTRACTOR" });
+                values: new object[] { "8248ed72-dc28-43fa-9cce-54f83ddc8eda", "0fdcf215-54c1-4636-b3a0-0b13a7f36f3f", "Contractor", "CONTRACTOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ContractorId",
