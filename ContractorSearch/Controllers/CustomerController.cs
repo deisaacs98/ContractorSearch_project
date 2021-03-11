@@ -30,15 +30,11 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
-            else if(_context.Contractors.Count() == 0)
+            else
             {
-                return RedirectToAction(nameof(UnavailablePage));
+                return View(customer);
             }
-             else
-            {
-                return RedirectToAction(nameof(AvailableContractorsIndex));
-            }
- 
+
         }
         public IActionResult UnavailablePage()
         {

@@ -21,7 +21,7 @@ namespace ContractorSearch.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var contractor = _context.Contractors.Where(c => c.IdentityUserId == userId).FirstOrDefault();
@@ -29,11 +29,15 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
+            else if (_context.Appointments.Count() == 0)
+            {
+                return RedirectToAction(nameof(CreateAppointments));
+            }
             else
             {
-                return View(contractor);
+                var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contractor.Id).ToListAsync();
+                return View(await applicationDbContext);
             }
-
         }
 
         public IActionResult Chat()
