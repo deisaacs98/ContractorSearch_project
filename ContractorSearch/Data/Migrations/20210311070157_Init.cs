@@ -215,7 +215,6 @@ namespace ContractorSearch.Migrations
                     ApptDate = table.Column<DateTime>(nullable: false),
                     Status = table.Column<string>(nullable: true),
                     PaymentMethod = table.Column<string>(nullable: true),
-                    DeliveryMethod = table.Column<string>(nullable: true),
                     Amount = table.Column<double>(nullable: false),
                     Rating = table.Column<int>(nullable: false),
                     Review = table.Column<string>(nullable: true),
@@ -243,12 +242,12 @@ namespace ContractorSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2dfc8a2c-baa2-4404-a892-fda2c9bce66b", "e9182649-f01c-4120-ade2-db77153089a3", "Customer", "CUSTOMER" });
+                values: new object[] { "726c4816-82ef-4ae7-addb-972d14ff5f24", "da8d9c9e-ec9b-435f-a701-a5002c06d4c7", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "8248ed72-dc28-43fa-9cce-54f83ddc8eda", "0fdcf215-54c1-4636-b3a0-0b13a7f36f3f", "Contractor", "CONTRACTOR" });
+                values: new object[] { "c35b907e-8b0e-466b-9ee5-1f4ccf49a50f", "6dfa3db0-cc6c-46c4-9a19-d1b9608f010a", "Contractor", "CONTRACTOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ContractorId",

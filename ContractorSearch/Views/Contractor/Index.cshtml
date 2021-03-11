@@ -22,9 +22,6 @@
                 @Html.DisplayNameFor(model => model.PaymentMethod)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeliveryMethod)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Amount)
             </th>
             <th>
@@ -50,9 +47,6 @@
                 @Html.DisplayFor(modelItem => item.PaymentMethod)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DeliveryMethod)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
@@ -64,7 +58,6 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
                 <a asp-action="Chat" asp-route-id="@item.Id">Chat</a>
             </td>
         </tr>

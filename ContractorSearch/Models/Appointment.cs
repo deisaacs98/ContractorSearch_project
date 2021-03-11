@@ -14,7 +14,6 @@ namespace ContractorSearch.Models
         public DateTime ApptDate { get; set; }
         public string Status { get; set; }
         public string PaymentMethod { get; set; }
-        public string DeliveryMethod { get; set; }
         public double Amount { get; set; } //changed from Amound (might have been typo)
         public int Rating { get; set; }
         public string Review { get; set; }

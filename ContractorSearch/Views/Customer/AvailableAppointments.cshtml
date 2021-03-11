@@ -23,9 +23,6 @@
                 @Html.DisplayNameFor(model => model.PaymentMethod)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeliveryMethod)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Amount)
             </th>
             <th>
@@ -59,9 +56,6 @@
                 @Html.DisplayFor(modelItem => item.PaymentMethod)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DeliveryMethod)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
@@ -76,11 +70,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Customer.Id)
             </td>
-            <td class="checkbox">
-                <input asp-for="@item.ReservedAppointment" />
-                <label asp-for="@item.ReservedAppointment">
-                    Reserve This Appointment
-                </label>
+            <td>
+                <a asp-action="Reserve" asp-route-id="@item.Id">Reserve Appointment</a>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

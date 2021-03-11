@@ -38,9 +38,6 @@ namespace ContractorSearch.Migrations
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DeliveryMethod")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PaymentMethod")
                         .HasColumnType("nvarchar(max)");
 
@@ -176,15 +173,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2dfc8a2c-baa2-4404-a892-fda2c9bce66b",
-                            ConcurrencyStamp = "e9182649-f01c-4120-ade2-db77153089a3",
+                            Id = "726c4816-82ef-4ae7-addb-972d14ff5f24",
+                            ConcurrencyStamp = "da8d9c9e-ec9b-435f-a701-a5002c06d4c7",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "8248ed72-dc28-43fa-9cce-54f83ddc8eda",
-                            ConcurrencyStamp = "0fdcf215-54c1-4636-b3a0-0b13a7f36f3f",
+                            Id = "c35b907e-8b0e-466b-9ee5-1f4ccf49a50f",
+                            ConcurrencyStamp = "6dfa3db0-cc6c-46c4-9a19-d1b9608f010a",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
