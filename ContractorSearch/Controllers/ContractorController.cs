@@ -9,6 +9,7 @@ using ContractorSearch.Data;
 using ContractorSearch.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using ContractorSearch.Hubs;
 
 namespace ContractorSearch.Controllers
 {
@@ -16,10 +17,12 @@ namespace ContractorSearch.Controllers
     public class ContractorController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly TwilioService _twilioService;
 
-        public ContractorController(ApplicationDbContext context)
+        public ContractorController(ApplicationDbContext context, TwilioService twilioService)
         {
             _context = context;
+            _twilioService = twilioService;
         }
         public async Task<IActionResult> Index()
         {
@@ -161,6 +164,24 @@ namespace ContractorSearch.Controllers
         private bool ContractorExists(int id)
         {
             return _context.Contractors.Any(e => e.Id == id);
-        }        
+        }
+
+        public IActionResult SendConfirmationText()
+        {
+            string messageToSend = "Your Appointment is Confirmed";
+            _twilioService.SendText(messageToSend);
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult SendCustomText()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SendCustomText(string message)
+        {
+            var messageToSend = Request.Form["messageToSend"];
+            _twilioService.SendText(messageToSend);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

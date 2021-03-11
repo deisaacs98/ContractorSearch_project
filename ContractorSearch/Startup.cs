@@ -48,6 +48,7 @@ namespace ContractorSearch
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSignalR();
+            services.AddTransient<TwilioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
