@@ -22,8 +22,7 @@ namespace ContractorSearch.Controllers
             _context = context;
         }
 
-        // GET: Customer
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
@@ -35,34 +34,15 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(UnavailablePage));
             }
-             else if (_context.Appointments.Count() == 0)
+             else
             {
                 return RedirectToAction(nameof(AvailableContractorsIndex));
             }
-            else
-            {
-                var applicationDbContext = _context.Appointments.Where(a => a.CustomerId == customer.Id).ToListAsync();
-                return View(await applicationDbContext);
-            }
+ 
         }
         public IActionResult UnavailablePage()
         {
             return View();
-        }
-
-        public async Task<IActionResult> AvailableContractorsIndex()
-        {
-            //var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
-
-            var applicationDbContext = _context.Contractors.ToListAsync();
-            return View(await applicationDbContext);
-        }
-        public async Task<IActionResult> AvailableAppointments(int? id)
-        {
-            //var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
-
-            var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == id).ToListAsync();
-            return View(await applicationDbContext);
         }
 
         public IActionResult Chat()
@@ -70,7 +50,6 @@ namespace ContractorSearch.Controllers
             return View();
         }
 
-        // GET: Customer/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -89,22 +68,19 @@ namespace ContractorSearch.Controllers
             return View(customer);
         }
 
-        // GET: Customer/Create
         public IActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
-        // POST: Customer/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,MiddleInitial,LastName,AddressLine1,AddressLine2,City,State,ZipCode,PhoneNumber,IdentityUserId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -113,7 +89,6 @@ namespace ContractorSearch.Controllers
             return View(customer);
         }
 
-        // GET: Customer/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -130,9 +105,6 @@ namespace ContractorSearch.Controllers
             return View(customer);
         }
 
-        // POST: Customer/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,MiddleInitial,LastName,AddressLine1,AddressLine2,City,State,ZipCode,PhoneNumber,IdentityUserId")] Customer customer)
@@ -164,13 +136,23 @@ namespace ContractorSearch.Controllers
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", customer.IdentityUserId);
             return View(customer);
-        }
-
-        
+        }        
 
         private bool CustomerExists(int id)
         {
             return _context.Customers.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> AvailableContractorsIndex()
+        {
+            var applicationDbContext = _context.Contractors.ToListAsync();
+            return View(await applicationDbContext);
+        }
+
+        public async Task<IActionResult> AvailableAppointments(int? id)
+        {
+            var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == id).ToListAsync();
+            return View(await applicationDbContext);
         }
 
         public async Task<IActionResult> Reserve(int id)
@@ -181,6 +163,14 @@ namespace ContractorSearch.Controllers
             _context.Appointments.Update(appointment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> CurrentAppointments()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+            var applicationDbContext = _context.Appointments.Where(a => a.CustomerId == customer.Id).ToListAsync();
+            return View(await applicationDbContext);
         }
     }
 }

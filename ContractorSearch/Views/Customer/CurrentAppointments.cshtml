@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<ContractorSearch.Models.Appointment>
 
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CurrentAppointments";
 }
 
 <h1>Current Appointments</h1>
 
 <p>
-    <a asp-action="CreateAppointments">Create An Appointment</a>
+    <a asp-action="AvailableContractorsIndex">Available Contractors</a>
 </p>
 <table class="table">
     <thead>
@@ -36,26 +37,30 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApptDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Review)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApptDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Review)
+                </td>
+
+            </tr>
         }
     </tbody>
 </table>
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>
