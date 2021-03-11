@@ -1,61 +1,73 @@
-﻿@model ContractorSearch.Models.Contractor
+﻿@model IEnumerable<ContractorSearch.Models.Appointment>
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Home</h1>
+<h1>Current Appointments</h1>
 
-<div>
-    <h4>Contractor</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddressLine1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddressLine1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddressLine2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddressLine2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit Information</a> |
-
-</div>
+<p>
+    <a asp-action="CreateAppointments">Create An Appointment</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApptDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Review)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApptDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Review)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Chat" asp-route-id="@item.Id">Chat</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

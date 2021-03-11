@@ -22,7 +22,8 @@ namespace ContractorSearch.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Contractor
+        public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var contractor = _context.Contractors.Where(c => c.IdentityUserId == userId).FirstOrDefault();
@@ -30,9 +31,14 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(Create));
             }
+            else if(_context.Appointments.Count() == 0)
+            {
+                return RedirectToAction(nameof(CreateAppointments));
+            }
             else
             {
-                return View(contractor);
+                var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contractor.Id).ToListAsync();
+                return View(await applicationDbContext);
             }
         }
 
@@ -41,19 +47,41 @@ namespace ContractorSearch.Controllers
             return View();
         }
 
+        // GET: Contractor/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var contractor = await _context.Contractors
+                .Include(c => c.IdentityUser)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (contractor == null)
+            {
+                return NotFound();
+            }
+
+            return View(contractor);
+        }
+
+        // GET: Contractor/Create
         public IActionResult Create()
         {
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
+        // POST: Contractor/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,AddressLine1,AddressLine2,City,State,ZipCode,PhoneNumber, IdentityUserId")] Contractor contractor)
         {
             if (ModelState.IsValid)
             {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                contractor.IdentityUserId = userId;
                 _context.Add(contractor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -62,12 +90,16 @@ namespace ContractorSearch.Controllers
             return View(contractor);
         }
 
+        // GET: Contractor/Create
         public IActionResult CreateAppointments()
         {
             //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
+        // POST: Contractor/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAppointments(Appointment appointment)
@@ -87,6 +119,7 @@ namespace ContractorSearch.Controllers
             return View(appointment);
         }
 
+        // GET: Contractor/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,6 +136,9 @@ namespace ContractorSearch.Controllers
             return View(contractor);
         }
 
+        // POST: Contractor/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AddressLine1,AddressLine2,City,State,ZipCode,PhoneNumber,IdentityUserId")] Contractor contractor)
@@ -134,6 +170,36 @@ namespace ContractorSearch.Controllers
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", contractor.IdentityUserId);
             return View(contractor);
+        }
+
+        // GET: Contractor/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var contractor = await _context.Contractors
+                .Include(c => c.IdentityUser)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (contractor == null)
+            {
+                return NotFound();
+            }
+
+            return View(contractor);
+        }
+
+        // POST: Contractor/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var contractor = await _context.Contractors.FindAsync(id);
+            _context.Contractors.Remove(contractor);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         private bool ContractorExists(int id)
