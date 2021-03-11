@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractorSearch", "ContractorSearch\ContractorSearch.csproj", "{FC4920C4-40A1-463F-99B5-8F4DFB58C195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContractorSearch", "ContractorSearch\ContractorSearch.csproj", "{FC4920C4-40A1-463F-99B5-8F4DFB58C195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackupforFuckups", "..\BackupforFuckups\BackupforFuckups\BackupforFuckups.csproj", "{839AFCA0-0C37-4510-8DC8-32B149769674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FC4920C4-40A1-463F-99B5-8F4DFB58C195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4920C4-40A1-463F-99B5-8F4DFB58C195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4920C4-40A1-463F-99B5-8F4DFB58C195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839AFCA0-0C37-4510-8DC8-32B149769674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839AFCA0-0C37-4510-8DC8-32B149769674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839AFCA0-0C37-4510-8DC8-32B149769674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839AFCA0-0C37-4510-8DC8-32B149769674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
