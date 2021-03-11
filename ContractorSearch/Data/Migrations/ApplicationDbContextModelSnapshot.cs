@@ -173,15 +173,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "726c4816-82ef-4ae7-addb-972d14ff5f24",
-                            ConcurrencyStamp = "da8d9c9e-ec9b-435f-a701-a5002c06d4c7",
+                            Id = "aa19c69c-5de9-48f3-9490-08c7c8fd8f68",
+                            ConcurrencyStamp = "6d9ae299-09e8-4179-8dca-de02c69ef5c4",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "c35b907e-8b0e-466b-9ee5-1f4ccf49a50f",
-                            ConcurrencyStamp = "6dfa3db0-cc6c-46c4-9a19-d1b9608f010a",
+                            Id = "814c9217-8de7-4541-aebf-805e67aa7c7f",
+                            ConcurrencyStamp = "7742d9c2-d532-4922-b146-eb248905df85",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
