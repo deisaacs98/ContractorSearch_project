@@ -92,11 +92,11 @@ namespace ContractorSearch
             app.UseCookiePolicy(); //added for chat
 
             //added for chat
-            app.UseSignalR(route =>
-            {
-                route.MapHub<ChatHub>("/chathub");
-            });
-            app.UseCors("CorsPolicy");
+            //app.UseSignalR(route =>
+            //{
+            //    route.MapHub<ChatHub>("/chathub");
+            //});
+            //app.UseCors("CorsPolicy");
             //app.UseMvc(); 
             //added for chat
 

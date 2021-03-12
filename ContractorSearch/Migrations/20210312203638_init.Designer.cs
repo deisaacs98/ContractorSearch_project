@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210312152255_init")]
+    [Migration("20210312203638_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,9 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("AddressLine2")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -175,15 +178,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "17aa36a8-91db-45b4-8335-cfcaaf5cb158",
-                            ConcurrencyStamp = "c8450150-ccc4-4e95-904f-b0e9baf85aea",
+                            Id = "a0991c84-5480-40f7-9903-b9fb22e289ee",
+                            ConcurrencyStamp = "93a59a6c-039a-42ff-a679-e84fbcca11ad",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "0f034b45-7dff-402c-8b5a-e8f9e634e199",
-                            ConcurrencyStamp = "058f12c0-840e-4777-8450-635d952460e1",
+                            Id = "4f85d19d-5893-49ba-9887-e63a4ce800f7",
+                            ConcurrencyStamp = "e555e5e9-6c65-4b80-a80e-fad76044d70b",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
