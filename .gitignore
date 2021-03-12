@@ -350,4 +350,5 @@ MigrationBackup/
 .ionide/
 
 # 
-ContractorSearch/ApiKeys.cs 
+ContractorSearch/ApiKeys.cs
+ApiKeys.cs
