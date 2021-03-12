@@ -36,19 +36,24 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(CreateAppointments));
             }
+            //else if (_context.Appointments.Where(a => (a.ContractorId == contractor.Id) && (a.Status == "Reserved")).ToListAsync() == null)
+           // {
+               // return RedirectToAction(nameof(AvailableAppointments));
+           // }
             else
             {
-                var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contractor.Id).ToListAsync();
+                var applicationDbContext = _context.Appointments.Where(a => (a.ContractorId == contractor.Id) && (a.Status == "Reserved")).ToListAsync();
                 return View(await applicationDbContext);
             }
         }
 
-        public IActionResult Chat()
+        public IActionResult Chat(int? id)
         {
+            var appointment = _context.Appointments.Where(a => a.Id == id).FirstOrDefault();
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var contractor = _context.Contractors.Where(c => c.IdentityUserId == userId).FirstOrDefault();
-
-            return View(contractor);
+            ViewBag.Contractor = contractor;
+            return View(appointment);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -108,10 +113,23 @@ namespace ContractorSearch.Controllers
                 appointment.CustomerId = null;
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
+                appointment.Contractor = contr;
+                _context.Appointments.Update(appointment);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(appointment);
         }
+
+        public async Task<IActionResult> AvailableAppointments()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var contr = _context.Contractors.Where(contr0 => contr0.IdentityUserId ==
+            userId).FirstOrDefault();
+            var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contr.Id).ToListAsync();
+            return View(await applicationDbContext);
+        }
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

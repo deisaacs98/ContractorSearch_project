@@ -4,16 +4,14 @@ using ContractorSearch.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210311175002_Init")]
-    partial class Init
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,15 +173,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "20bad3b3-3dde-4bae-904d-3799951c7ec8",
-                            ConcurrencyStamp = "d49c61b4-aef8-4a77-8f5e-e488b9d5705d",
+                            Id = "17aa36a8-91db-45b4-8335-cfcaaf5cb158",
+                            ConcurrencyStamp = "c8450150-ccc4-4e95-904f-b0e9baf85aea",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "3aedd788-87a3-407e-9e30-03a5d098fc7a",
-                            ConcurrencyStamp = "94969ec0-752c-4fe4-bb6d-09dcde1b3849",
+                            Id = "0f034b45-7dff-402c-8b5a-e8f9e634e199",
+                            ConcurrencyStamp = "058f12c0-840e-4777-8450-635d952460e1",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });

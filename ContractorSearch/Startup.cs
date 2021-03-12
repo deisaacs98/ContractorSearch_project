@@ -16,6 +16,7 @@ using ContractorSearch.Hubs;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using ContractorSearch.ActionFilters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ContractorSearch
 {
@@ -45,6 +46,26 @@ namespace ContractorSearch
                 config.Filters.Add(typeof(GlobalRouting));
             });
 
+            //added for chat
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                       .WithOrigins("http://localhost:44317")
+                       .AllowCredentials();
+            }));
+
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1); //may not need this
+
+            //added for chat
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSignalR();
@@ -68,6 +89,16 @@ namespace ContractorSearch
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy(); //added for chat
+
+            //added for chat
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/chathub");
+            });
+            app.UseCors("CorsPolicy");
+            //app.UseMvc(); 
+            //added for chat
 
             app.UseRouting();
 

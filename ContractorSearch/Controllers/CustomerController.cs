@@ -41,12 +41,13 @@ namespace ContractorSearch.Controllers
             return View();
         }
 
-        public IActionResult Chat()
+        public IActionResult Chat(int? id)
         {
+            var appointment = _context.Appointments.Where(a => a.Id == id).FirstOrDefault();
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
-
-            return View(customer);
+            ViewBag.Customer = customer;
+            return View(appointment);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -162,6 +163,9 @@ namespace ContractorSearch.Controllers
             appointment.ReservedAppointment = true;
             appointment.Status = "Reserved";
             appointment.CustomerId = customer.Id;
+            appointment.Customer = customer;
+            appointment.Contractor = appointment.Contractor;
+            appointment.ContractorId = appointment.ContractorId;
             _context.Appointments.Update(appointment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

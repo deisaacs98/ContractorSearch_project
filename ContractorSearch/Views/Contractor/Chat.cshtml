@@ -1,16 +1,13 @@
 ﻿@*@page*@
-@model ContractorSearch.Models.Contractor
-@*may need to change to user on hub*@
-@{
+<!-- //add "at" {
     ViewData["Title"] = "Chat";
-}
+//}
 <div class="container">
     <div class="row">&nbsp;</div>
     <div class="row">
         <div class="col-2">User</div>
         @*<div class="col-4"><input type="text" id="userInput" /></div>*@
         <div class="col-4" id="userInput">
-            @Model.Name
         </div>
     </div>
     <div class="row">
@@ -34,5 +31,46 @@
         <ul id="messagesList"></ul>
     </div>
 </div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>-->
+@{
+    ViewData["Title"] = "Chat";
+}
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <form class="form-inline">
+                <div class="input-prepend input-append">
+                    <div id="name">
+                        @*@Model.Contractor.Name*@
+                        @ViewBag.Contractor.Name
+                    </div>
+                    <input type="text" name="group-message" id="group-message-text" placeholder="Type a message" />
+                    @*<input type="text" name="group-name" id="group-name" placeholder="Type a group name" />*@
+                    <div id="group-name">
+                        @Model.Id
+                    </div>
+                    <input type="button" id="groupmsg" class="btn" value="Send to Group" />
+                    <input type="button" id="join-group" class="btn" value="Join Group" />
+                    <input type="button" id="leave-group" class="btn" value="Leave Group" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+@*<script src="~/lib/signalr/signalr.js"></script>*@
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
