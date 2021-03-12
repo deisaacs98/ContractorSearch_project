@@ -56,6 +56,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Review)
             </td>
+            <td>
+                <a asp-action="Chat" asp-route-id="@item.Id">Chat</a>
+            </td>
         </tr>
         }
     </tbody>

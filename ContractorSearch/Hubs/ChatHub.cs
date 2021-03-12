@@ -39,28 +39,31 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace ContractorSearch.Hubs
 {
-    public class ChatHub : Hub
+    public class ChatHub : Hub //added string Name to all methods
     {
-        public Task SendMessageToGroup(string groupName, string message)
+        public Task SendMessageToGroup(string groupName, string message, string name)
         {
-            return Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId}: {message}");
+            //return Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId}: {message}");
+            return Clients.Group(groupName).SendAsync("Send", $"{name}: {message}");
         }
 
-        public async Task AddToGroup(string groupName)
+        public async Task AddToGroup(string groupName, string name)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
-            await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has joined the group {groupName}.");
+            //await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has joined the group {groupName}.");
+            await Clients.Group(groupName).SendAsync("Send", $"{name} has joined the group {groupName}.");
         }
 
-        public async Task RemoveFromGroup(string groupName)
+        public async Task RemoveFromGroup(string groupName, string name)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
 
-            await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has left the group {groupName}.");
+            //await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has left the group {groupName}.");
+            await Clients.Group(groupName).SendAsync("Send", $"{name} has left the group {groupName}.");
         }
 
-        public Task SendPrivateMessage(string user, string message)
+        public Task SendPrivateMessage(string user, string message, string name)
         {
             return Clients.User(user).SendAsync("ReceiveMessage", message);
         }

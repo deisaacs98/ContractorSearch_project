@@ -43,10 +43,12 @@ connection.on("Send", function (message) {
     document.getElementById("messagesList").appendChild(li);
 });
 document.getElementById("groupmsg").addEventListener("click", async (event) => {
-    var groupName = document.getElementById("group-name").value;
+    //var groupName = document.getElementById("group-name").value;
+    var groupName = document.getElementById("group-name").innerHTML.valueOf(); /*may be incorrect*/
+    var name = document.getElementById("name").innerHTML.valueOf();
     var groupMsg = document.getElementById("group-message-text").value;
     try {
-        await connection.invoke("SendMessageToGroup", groupName, groupMsg);
+        await connection.invoke("SendMessageToGroup", groupName, groupMsg, name);
     }
     catch (e) {
         console.error(e.toString());
@@ -54,9 +56,11 @@ document.getElementById("groupmsg").addEventListener("click", async (event) => {
     event.preventDefault();
 });
 document.getElementById("join-group").addEventListener("click", async (event) => {
-    var groupName = document.getElementById("group-name").value;
+    //var groupName = document.getElementById("group-name").value;
+    var groupName = document.getElementById("group-name").innerHTML.valueOf();
+    var name = document.getElementById("name").innerHTML.valueOf();
     try {
-        await connection.invoke("AddToGroup", groupName);
+        await connection.invoke("AddToGroup", groupName, name);
     }
     catch (e) {
         console.error(e.toString());
@@ -64,9 +68,11 @@ document.getElementById("join-group").addEventListener("click", async (event) =>
     event.preventDefault();
 });
 document.getElementById("leave-group").addEventListener("click", async (event) => {
-    var groupName = document.getElementById("group-name").value;
+    //var groupName = document.getElementById("group-name").value;
+    var groupName = document.getElementById("group-name").innerHTML.valueOf();
+    var name = document.getElementById("name").innerHTML.valueOf();
     try {
-        await connection.invoke("RemoveFromGroup", groupName);
+        await connection.invoke("RemoveFromGroup", groupName, name);
     }
     catch (e) {
         console.error(e.toString());
