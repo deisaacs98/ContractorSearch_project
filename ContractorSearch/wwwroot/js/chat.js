@@ -53,6 +53,7 @@ document.getElementById("groupmsg").addEventListener("click", async (event) => {
     }
     event.preventDefault();
 });
+<<<<<<< HEAD
 document.getElementById("join-group").addEventListener("click", async (event) => {
     var groupName = document.getElementById("group-name").value;
     try {
@@ -61,6 +62,16 @@ document.getElementById("join-group").addEventListener("click", async (event) =>
     catch (e) {
         console.error(e.toString());
     }
+=======
+
+document.getElementById("sendButton").addEventListener("click", function (event) {
+    //var user = document.getElementById("userInput").value;
+    var user = document.getElementById("userInput").innerHTML.valueOf();
+    var message = document.getElementById("messageInput").value;
+    connection.invoke("SendMessage", user, message).catch(function (err) {
+        return console.error(err.toString());
+    });
+>>>>>>> a8abf69d65694dbf4b9bdd9e55c1bcea8e524e92
     event.preventDefault();
 });
 document.getElementById("leave-group").addEventListener("click", async (event) => {

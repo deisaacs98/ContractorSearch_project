@@ -1,12 +1,21 @@
 ﻿@*@page*@
+<<<<<<< HEAD
 <!-- //add "at" {
+=======
+@model ContractorSearch.Models.Contractor
+@*may need to change to user on hub*@
+@{
+>>>>>>> a8abf69d65694dbf4b9bdd9e55c1bcea8e524e92
     ViewData["Title"] = "Chat";
 //}
 <div class="container">
     <div class="row">&nbsp;</div>
     <div class="row">
         <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
+        @*<div class="col-4"><input type="text" id="userInput" /></div>*@
+        <div class="col-4" id="userInput">
+            @Model.Name
+        </div>
     </div>
     <div class="row">
         <div class="col-2">Message</div>
