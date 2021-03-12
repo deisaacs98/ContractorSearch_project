@@ -28,6 +28,7 @@ namespace ContractorSearch.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var contractor = _context.Contractors.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+            
             if (contractor == null)
             {
                 return RedirectToAction(nameof(Create));
