@@ -7,5 +7,6 @@ namespace ContractorSearch.Hubs
 {
     public class GoogleMapsService
     {
+        public void GeocodeAddress() { }
     }
 }
