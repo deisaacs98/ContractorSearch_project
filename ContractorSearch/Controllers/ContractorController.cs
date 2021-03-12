@@ -33,9 +33,13 @@ namespace ContractorSearch.Controllers
             {
                 return RedirectToAction(nameof(CreateAppointments));
             }
+            //else if (_context.Appointments.Where(a => (a.ContractorId == contractor.Id) && (a.Status == "Reserved")).ToListAsync() == null)
+           // {
+               // return RedirectToAction(nameof(AvailableAppointments));
+           // }
             else
             {
-                var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contractor.Id).ToListAsync();
+                var applicationDbContext = _context.Appointments.Where(a => (a.ContractorId == contractor.Id) && (a.Status == "Reserved")).ToListAsync();
                 return View(await applicationDbContext);
             }
         }
@@ -106,6 +110,16 @@ namespace ContractorSearch.Controllers
             }
             return View(appointment);
         }
+
+        public async Task<IActionResult> AvailableAppointments()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var contr = _context.Contractors.Where(contr0 => contr0.IdentityUserId ==
+            userId).FirstOrDefault();
+            var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == contr.Id).ToListAsync();
+            return View(await applicationDbContext);
+        }
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

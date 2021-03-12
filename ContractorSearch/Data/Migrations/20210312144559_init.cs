@@ -242,12 +242,12 @@ namespace ContractorSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "fd723a1a-4228-41a7-8ddc-fd5a08202836", "c17315a3-1a32-4a3e-8738-f6474ced7d0b", "Customer", "CUSTOMER" });
+                values: new object[] { "95c6bf2b-201c-4e0e-8d14-661c0d76145e", "8b9db0c4-d1b7-45fd-99e1-917bd3013f09", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "72b6af6f-45e9-45ad-96ca-82881561350b", "04b9b159-9151-49f0-824d-3cdd83cb8d38", "Contractor", "CONTRACTOR" });
+                values: new object[] { "dd80fd30-dc66-4df8-bb87-3496f3fb750c", "c7c79786-e715-4573-8832-feda9ca67761", "Contractor", "CONTRACTOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ContractorId",
