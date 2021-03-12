@@ -34,7 +34,7 @@
 //});
 
 
-const connection = new signalR.HubConnectionBuilder()
+var connection = new signalR.HubConnectionBuilder() /*may need const connection*/
     .withUrl("/chatHub")
     .build();
 connection.on("Send", function (message) {
