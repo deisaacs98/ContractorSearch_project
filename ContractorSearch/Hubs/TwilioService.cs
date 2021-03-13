@@ -11,8 +11,7 @@ namespace ContractorSearch.Hubs
     public class TwilioService
     {
         public void SendText(string messageToSend)
-        { 
-
+        {
 
             TwilioClient.Init(ApiKeys.TwilioAccountSid, ApiKeys.TwilioToken);
 
@@ -21,8 +20,6 @@ namespace ContractorSearch.Hubs
                 from: new Twilio.Types.PhoneNumber(ApiKeys.TwilioFrom),
                 to: new Twilio.Types.PhoneNumber(ApiKeys.TwilioTo)
             );
-
-            Console.WriteLine(message.Sid);
         }
     }
 }

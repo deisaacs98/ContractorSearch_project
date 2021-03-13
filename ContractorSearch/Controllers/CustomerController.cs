@@ -178,5 +178,27 @@ namespace ContractorSearch.Controllers
             var applicationDbContext = _context.Appointments.Where(a => a.CustomerId == customer.Id).ToListAsync();
             return View(await applicationDbContext);
         }
+
+        public async Task<IActionResult> SeeContractorReviewsAndRating(int contID)
+        {
+            var contId = contID;
+            var reviews = _context.Appointments.Where(c => c.ContractorId == contId);
+            return View();
+        }
+
+        public IActionResult RateAndReview(int id)
+        {
+            var apptDetails = _context.Appointments.Find(id);
+            return View(apptDetails);
+        }
+        [HttpPost]
+        public IActionResult RateAndReview(Appointment appointment)
+        {
+            _context.Appointments.Update(appointment);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

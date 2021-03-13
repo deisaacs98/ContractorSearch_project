@@ -185,22 +185,22 @@ namespace ContractorSearch.Controllers
             return _context.Contractors.Any(e => e.Id == id);
         }
 
-        public IActionResult SendConfirmationText()
-        {
-            string messageToSend = "Your Appointment is Confirmed";
-            _twilioService.SendText(messageToSend);
-            return RedirectToAction(nameof(Index));
-        }
-        public IActionResult SendCustomText()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult SendCustomText(string message)
-        {
-            var messageToSend = Request.Form["messageToSend"];
-            _twilioService.SendText(messageToSend);
-            return RedirectToAction(nameof(Index));
-        }
+        //public IActionResult SendConfirmationText()
+        //{
+        //    string messageToSend = "Your Appointment is Confirmed";
+        //    _twilioService.SendText(messageToSend);
+        //    return RedirectToAction(nameof(Index));
+        //}
+        //public IActionResult SendCustomText()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public IActionResult SendCustomText(string message)
+        //{
+        //    var messageToSend = Request.Form["messageToSend"];
+        //    _twilioService.SendText(messageToSend);
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }
