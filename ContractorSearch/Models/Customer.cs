@@ -21,6 +21,8 @@ namespace ContractorSearch.Models
         public string State { get; set; }
         public int ZipCode { get; set; }
         public string PhoneNumber { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

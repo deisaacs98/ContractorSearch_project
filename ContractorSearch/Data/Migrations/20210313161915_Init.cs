@@ -165,6 +165,8 @@ namespace ContractorSearch.Migrations
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<int>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    Latitude = table.Column<double>(nullable: false),
+                    Longitude = table.Column<double>(nullable: false),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -193,6 +195,8 @@ namespace ContractorSearch.Migrations
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<int>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    Latitude = table.Column<double>(nullable: false),
+                    Longitude = table.Column<double>(nullable: false),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -264,12 +268,12 @@ namespace ContractorSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "8d4d4a4c-851b-4613-b6ff-7e94e9e29148", "84fba76e-83e3-4564-87d4-239efd7da868", "Customer", "CUSTOMER" });
+                values: new object[] { "fad46ce8-4fc1-4600-b5b7-e57f50fc213b", "3a524471-9acb-4122-9d19-1fafa279487e", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0d89bbbc-d787-4700-aa0a-c70224b6fe4e", "f0bbc799-66fb-421f-b957-2c157eb1cb25", "Contractor", "CONTRACTOR" });
+                values: new object[] { "3d885b99-aecf-4ffd-9efa-6e861f2b8049", "c318e145-624f-4991-b1a5-d351e390563e", "Contractor", "CONTRACTOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ContractorId",

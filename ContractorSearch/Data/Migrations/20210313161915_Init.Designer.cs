@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210313143200_Init")]
+    [Migration("20210313161915_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,6 +83,12 @@ namespace ContractorSearch.Migrations
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -126,6 +132,12 @@ namespace ContractorSearch.Migrations
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("MiddleInitial")
                         .HasColumnType("nvarchar(max)");
@@ -201,15 +213,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8d4d4a4c-851b-4613-b6ff-7e94e9e29148",
-                            ConcurrencyStamp = "84fba76e-83e3-4564-87d4-239efd7da868",
+                            Id = "fad46ce8-4fc1-4600-b5b7-e57f50fc213b",
+                            ConcurrencyStamp = "3a524471-9acb-4122-9d19-1fafa279487e",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "0d89bbbc-d787-4700-aa0a-c70224b6fe4e",
-                            ConcurrencyStamp = "f0bbc799-66fb-421f-b957-2c157eb1cb25",
+                            Id = "3d885b99-aecf-4ffd-9efa-6e861f2b8049",
+                            ConcurrencyStamp = "c318e145-624f-4991-b1a5-d351e390563e",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
