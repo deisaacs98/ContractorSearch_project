@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractorSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210313011555_test13")]
-    partial class test13
+    [Migration("20210313140603_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -146,32 +146,6 @@ namespace ContractorSearch.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("ContractorSearch.Models.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AppointmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("When")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppointmentId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -201,15 +175,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ba53a2a9-ad13-42fe-afbe-4926fc711f8d",
-                            ConcurrencyStamp = "fd8d5f1f-107a-4d1f-ad6f-d3e6d08810e9",
+                            Id = "1dfece9f-f182-405a-8dc6-a95ee37152fe",
+                            ConcurrencyStamp = "d3d3b3af-9386-4db6-b6a9-44af59a8f82b",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "2df4fbcb-4176-4566-8efb-c641f79b8ee2",
-                            ConcurrencyStamp = "6cbbae67-9de8-457d-ba22-b8aff85cf88c",
+                            Id = "c053d1a5-0ad9-4402-b4ca-656cc6c1bb8a",
+                            ConcurrencyStamp = "ba148d8f-cfde-4044-8871-a7066f875615",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });
@@ -409,15 +383,6 @@ namespace ContractorSearch.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
-                });
-
-            modelBuilder.Entity("ContractorSearch.Models.Message", b =>
-                {
-                    b.HasOne("ContractorSearch.Models.Appointment", "Appointment")
-                        .WithMany()
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

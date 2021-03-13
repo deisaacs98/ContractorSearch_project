@@ -9,34 +9,31 @@ namespace ContractorSearch.Hubs
 {
     public class TwilioService
     {
-<<<<<<< Updated upstream
+        //There was a merge conflict here. ApiKeys should be static,
+        //so will be leaving like this.
+        //
+        //        public void SendText(string messageToSend)
+        //        {
+        //            ApiKeys apiKeys = new ApiKeys();
+
+
+        //            TwilioClient.Init(apiKeys.TwilioAccountSid, apiKeys.TwilioToken);
+
+        //            var message = MessageResource.Create(
+        //                body: messageToSend,
+        //                from: new Twilio.Types.PhoneNumber(apiKeys.TwilioFrom),
+        //                to: new Twilio.Types.PhoneNumber(apiKeys.TwilioTo)
+        //            );
+        //
         public void SendText(string messageToSend)
         {
-            ApiKeys apiKeys = new ApiKeys();
-
-
-            TwilioClient.Init(apiKeys.TwilioAccountSid, apiKeys.TwilioToken);
+            TwilioClient.Init(ApiKeys.TwilioAccountSid, ApiKeys.TwilioToken);
 
             var message = MessageResource.Create(
                 body: messageToSend,
-                from: new Twilio.Types.PhoneNumber(apiKeys.TwilioFrom),
-                to: new Twilio.Types.PhoneNumber(apiKeys.TwilioTo)
+                from: new Twilio.Types.PhoneNumber(ApiKeys.TwilioFrom),
+                to: new Twilio.Types.PhoneNumber(ApiKeys.TwilioTo)
             );
-=======
-        //public void SendText(string messageToSend)
-        //{ 
-
-
-        //    TwilioClient.Init(ApiKeys.TwilioAccountSid, ApiKeys.TwilioToken);
-
-        //    var message = MessageResource.Create(
-        //        body: messageToSend,
-        //        from: new Twilio.Types.PhoneNumber(ApiKeys.TwilioFrom),
-        //        to: new Twilio.Types.PhoneNumber(ApiKeys.TwilioTo)
-        //    );
->>>>>>> Stashed changes
-
-        //    Console.WriteLine(message.Sid);
-        //}
+        }
     }
 }
