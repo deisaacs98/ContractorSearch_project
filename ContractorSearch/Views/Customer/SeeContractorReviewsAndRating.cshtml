@@ -1,0 +1,35 @@
+﻿@model ContractorSearch.Models.Appointment
+
+@{
+    ViewData["Title"] = "SeeContractorReviews";
+}
+
+<h1>SeeContractorReviews</h1>
+
+<div>
+    <h4>Contractor Review</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Review)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Review)
+        </dd>
+
+    </dl>
+</div>
+<div>
+     |
+    <a asp-action="Index">Back to List</a>
+</div>
+    }
+}
+

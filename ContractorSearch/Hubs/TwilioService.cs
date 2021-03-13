@@ -9,6 +9,7 @@ namespace ContractorSearch.Hubs
 {
     public class TwilioService
     {
+<<<<<<< Updated upstream
         public void SendText(string messageToSend)
         {
             ApiKeys apiKeys = new ApiKeys();
@@ -21,8 +22,21 @@ namespace ContractorSearch.Hubs
                 from: new Twilio.Types.PhoneNumber(apiKeys.TwilioFrom),
                 to: new Twilio.Types.PhoneNumber(apiKeys.TwilioTo)
             );
+=======
+        //public void SendText(string messageToSend)
+        //{ 
 
-            Console.WriteLine(message.Sid);
-        }
+
+        //    TwilioClient.Init(ApiKeys.TwilioAccountSid, ApiKeys.TwilioToken);
+
+        //    var message = MessageResource.Create(
+        //        body: messageToSend,
+        //        from: new Twilio.Types.PhoneNumber(ApiKeys.TwilioFrom),
+        //        to: new Twilio.Types.PhoneNumber(ApiKeys.TwilioTo)
+        //    );
+>>>>>>> Stashed changes
+
+        //    Console.WriteLine(message.Sid);
+        //}
     }
 }
