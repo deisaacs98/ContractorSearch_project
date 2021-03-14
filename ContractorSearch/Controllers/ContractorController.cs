@@ -10,6 +10,7 @@ using ContractorSearch.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using ContractorSearch.Hubs;
+using Stripe;
 
 namespace ContractorSearch.Controllers
 {
@@ -208,6 +209,33 @@ namespace ContractorSearch.Controllers
             var messageToSend = Request.Form["messageToSend"];
             _twilioService.SendText(messageToSend);
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult SubmitCharge(int? id)
+        {
+            var customer = _context.Customers.Where(c => c.Id == id).FirstOrDefault();
+            customer.Balance += 1.00;
+
+            StripeConfiguration.ApiKey = ApiKeys.SecretKey;
+
+            var options = new ChargeCreateOptions
+            {
+                Amount = 100,
+                Currency = "usd",
+                Source = "tok_amex",
+                Description = "Customer Charged",
+            };
+            var service = new ChargeService();
+            service.Create(options);
+
+            return RedirectToAction(nameof(Clients));
+        }
+
+        public IActionResult Clients()
+        {
+            var customer = _context.Customers.ToList();
+
+            return View(customer);
         }
     }
 }
