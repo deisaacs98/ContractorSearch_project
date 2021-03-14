@@ -23,6 +23,7 @@ namespace ContractorSearch.Models
         public string PhoneNumber { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public double Balance { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

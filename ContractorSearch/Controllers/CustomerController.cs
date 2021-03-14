@@ -153,6 +153,7 @@ namespace ContractorSearch.Controllers
             customer = await _googleMapsService.GeocodeCustomerAddress(customer);
             ViewBag.Latitude = customer.Latitude;
             ViewBag.Longitude = customer.Longitude;
+
             ViewData["ApiKeys"] = ApiKeys.GoogleMaps;
             var applicationDbContext = _context.Contractors.Where(m=>m.ZipCode==customer.ZipCode).ToListAsync();
             return View(await applicationDbContext);
@@ -193,6 +194,7 @@ namespace ContractorSearch.Controllers
         {
             var contractor = _context.Contractors.Where(a => a.Id == id).FirstOrDefault();
             contractor = await _googleMapsService.GeocodeContractorAddress(contractor);
+            ViewBag.Name = contractor.Name;
             ViewBag.Latitude = contractor.Latitude;
             ViewBag.Longitude = contractor.Longitude;
             ViewData["ApiKeys"] = ApiKeys.GoogleMaps;

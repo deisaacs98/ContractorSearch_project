@@ -187,10 +187,15 @@ namespace ContractorSearch.Controllers
             return _context.Contractors.Any(e => e.Id == id);
         }
 
-        public IActionResult SendConfirmationText()
+        public IActionResult SendConfirmationText(int id)
         {
+            var appointment = _context.Appointments.Where(m => m.Id == id).FirstOrDefault();
+            appointment.Status = "Confirmed";
+            _context.Appointments.Update(appointment);
+            _context.SaveChangesAsync();
             string messageToSend = "Your Appointment is Confirmed";
             _twilioService.SendText(messageToSend);
+            
             return RedirectToAction(nameof(Index));
         }
         public IActionResult SendCustomText()
