@@ -9,6 +9,7 @@ using ContractorSearch.Data;
 using ContractorSearch.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using ContractorSearch.Hubs;
 
 namespace ContractorSearch.Controllers
 {
@@ -16,10 +17,12 @@ namespace ContractorSearch.Controllers
     public class CustomerController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly GoogleMapsService _googleMapsService;
 
-        public CustomerController(ApplicationDbContext context)
+        public CustomerController(ApplicationDbContext context, GoogleMapsService googleMapsService)
         {
             _context = context;
+            _googleMapsService = googleMapsService;
         }
 
         public IActionResult Index()
@@ -81,6 +84,7 @@ namespace ContractorSearch.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
+                customer = await _googleMapsService.GeocodeCustomerAddress(customer);
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

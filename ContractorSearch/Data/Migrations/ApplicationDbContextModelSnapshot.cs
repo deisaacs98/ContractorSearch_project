@@ -211,15 +211,15 @@ namespace ContractorSearch.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fad46ce8-4fc1-4600-b5b7-e57f50fc213b",
-                            ConcurrencyStamp = "3a524471-9acb-4122-9d19-1fafa279487e",
+                            Id = "611495c4-e210-4813-9a40-3231d4f3315e",
+                            ConcurrencyStamp = "c066546e-ae71-445f-a278-f6afb9ff624a",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "3d885b99-aecf-4ffd-9efa-6e861f2b8049",
-                            ConcurrencyStamp = "c318e145-624f-4991-b1a5-d351e390563e",
+                            Id = "df429f92-30d2-4d23-8abf-87920c711161",
+                            ConcurrencyStamp = "f0e2afb2-7758-4b5d-8e3b-421e30d8a3c1",
                             Name = "Contractor",
                             NormalizedName = "CONTRACTOR"
                         });

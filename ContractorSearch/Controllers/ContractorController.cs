@@ -18,11 +18,13 @@ namespace ContractorSearch.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly TwilioService _twilioService;
+        private readonly GoogleMapsService _googleMapsService;
 
-        public ContractorController(ApplicationDbContext context, TwilioService twilioService)
+        public ContractorController(ApplicationDbContext context, TwilioService twilioService, GoogleMapsService googleMapsService)
         {
             _context = context;
             _twilioService = twilioService;
+            _googleMapsService = googleMapsService;
         }
         public async Task<IActionResult> Index()
         {
@@ -88,6 +90,7 @@ namespace ContractorSearch.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 contractor.IdentityUserId = userId;
+                contractor = await _googleMapsService.GeocodeContractorAddress(contractor);
                 _context.Add(contractor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -185,22 +188,22 @@ namespace ContractorSearch.Controllers
             return _context.Contractors.Any(e => e.Id == id);
         }
 
-        //public IActionResult SendConfirmationText()
-        //{
-        //    string messageToSend = "Your Appointment is Confirmed";
-        //    _twilioService.SendText(messageToSend);
-        //    return RedirectToAction(nameof(Index));
-        //}
-        //public IActionResult SendCustomText()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult SendCustomText(string message)
-        //{
-        //    var messageToSend = Request.Form["messageToSend"];
-        //    _twilioService.SendText(messageToSend);
-        //    return RedirectToAction(nameof(Index));
-        //}
+        public IActionResult SendConfirmationText()
+        {
+            string messageToSend = "Your Appointment is Confirmed";
+            _twilioService.SendText(messageToSend);
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult SendCustomText()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SendCustomText(string message)
+        {
+            var messageToSend = Request.Form["messageToSend"];
+            _twilioService.SendText(messageToSend);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
