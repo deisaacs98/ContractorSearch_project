@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContractorSearch.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -268,12 +268,12 @@ namespace ContractorSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "611495c4-e210-4813-9a40-3231d4f3315e", "c066546e-ae71-445f-a278-f6afb9ff624a", "Customer", "CUSTOMER" });
+                values: new object[] { "66a1a087-7d92-49a6-a545-40304b746bd6", "68ab4cd6-d98a-40d5-818b-918377e0c593", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "df429f92-30d2-4d23-8abf-87920c711161", "f0e2afb2-7758-4b5d-8e3b-421e30d8a3c1", "Contractor", "CONTRACTOR" });
+                values: new object[] { "b898cc0c-2400-428d-99ea-fcb4f85e5947", "b6464afc-2141-482f-98a5-096b4ee12d1d", "Contractor", "CONTRACTOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ContractorId",

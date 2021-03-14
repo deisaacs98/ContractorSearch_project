@@ -147,9 +147,13 @@ namespace ContractorSearch.Controllers
             return _context.Customers.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> AvailableContractorsIndex()
+        public async Task<IActionResult> AvailableContractorsIndex(int id)
         {
             var applicationDbContext = _context.Contractors.ToListAsync();
+            var customer = _context.Customers.Where(m=>m.Id==id).FirstOrDefault();
+            ViewData["Lat"] = customer.Latitude;
+            ViewData["Long"] = customer.Longitude;
+            ViewData["ApiKeys"] = ApiKeys.GoogleMaps;
             return View(await applicationDbContext);
         }
 
