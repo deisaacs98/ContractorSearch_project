@@ -168,17 +168,19 @@ namespace ContractorSearch.Controllers
 
         public async Task<IActionResult> Reserve(int id)
         {
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var customer = _context.Customers.Where(c => c.IdentityUserId == userId).FirstOrDefault();
-            var appointment = await _context.Appointments.FirstOrDefaultAsync(m => m.Id == id);
-            appointment.ReservedAppointment = true;
-            appointment.Status = "Reserved";
-            appointment.CustomerId = customer.Id;
-            appointment.Customer = customer;
-            appointment.Contractor = appointment.Contractor;
-            appointment.ContractorId = appointment.ContractorId;
-            _context.Appointments.Update(appointment);
-            await _context.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var customer = _context.Customers.Where(c => c.IdentityUserId ==
+                userId).FirstOrDefault();
+                var appointment = await _context.Appointments.FirstOrDefaultAsync(m => m.Id == id);
+                appointment.Customer = customer;
+                appointment.CustomerId = customer.Id;
+                appointment.ReservedAppointment = true;
+                appointment.Status = "Reserved";
+                _context.Appointments.Update(appointment);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Index));
         }
 

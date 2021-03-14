@@ -46,7 +46,7 @@ namespace ContractorSearch.Controllers
            // }
             else
             {
-                var applicationDbContext = _context.Appointments.Where(a => (a.ContractorId == contractor.Id) && (a.Status == "Reserved")).ToListAsync();
+                var applicationDbContext = _context.Appointments.Where(a => (a.ContractorId == contractor.Id)&&(a.Contractor==contractor) && (a.Status != null)).ToListAsync();
                 return View(await applicationDbContext);
             }
         }
@@ -213,8 +213,14 @@ namespace ContractorSearch.Controllers
 
         public IActionResult SubmitCharge(int? id)
         {
-            var customer = _context.Customers.Where(c => c.Id == id).FirstOrDefault();
+            var appointment = _context.Appointments.Where(c => c.Id == id).FirstOrDefault();
+            appointment.Status = "Completed";
+            appointment.Amount = 1.00;
+            _context.Appointments.Update(appointment);
+            var customer = _context.Customers.Where(c=>c.Id==appointment.CustomerId).FirstOrDefault();
             customer.Balance += 1.00;
+            _context.Customers.Update(customer);
+            _context.SaveChangesAsync();
 
             StripeConfiguration.ApiKey = ApiKeys.SecretKey;
 
@@ -228,14 +234,8 @@ namespace ContractorSearch.Controllers
             var service = new ChargeService();
             service.Create(options);
 
-            return RedirectToAction(nameof(Clients));
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Clients()
-        {
-            var customer = _context.Customers.ToList();
-
-            return View(customer);
-        }
     }
 }
