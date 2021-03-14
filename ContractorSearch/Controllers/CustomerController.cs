@@ -192,6 +192,8 @@ namespace ContractorSearch.Controllers
             return View(await applicationDbContext);
         }
 
+
+
         public async Task<IActionResult> SeeContractorReviewsAndRating(int? id)
         {
             var contractor = _context.Contractors.Where(a => a.Id == id).FirstOrDefault();

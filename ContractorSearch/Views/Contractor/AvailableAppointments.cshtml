@@ -13,13 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApptDate)
+                Appointment Date
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentMethod)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Amount)
@@ -29,12 +26,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Review)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contractor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservedAppointment)
             </th>
             <th></th>
         </tr>
@@ -50,9 +41,6 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PaymentMethod)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
@@ -60,9 +48,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Review)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Contractor.Id)
                 </td>
             </tr>
         }

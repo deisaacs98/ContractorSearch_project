@@ -215,10 +215,10 @@ namespace ContractorSearch.Controllers
         {
             var appointment = _context.Appointments.Where(c => c.Id == id).FirstOrDefault();
             appointment.Status = "Completed";
-            appointment.Amount = 1.00;
+            appointment.Amount=100.00;
             _context.Appointments.Update(appointment);
             var customer = _context.Customers.Where(c=>c.Id==appointment.CustomerId).FirstOrDefault();
-            customer.Balance += 1.00;
+            customer.Balance += 100.00;
             _context.Customers.Update(customer);
             _context.SaveChangesAsync();
 

@@ -22,23 +22,18 @@ function ConfirmationDialog() {
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApptDate)
+                Appointment Date
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer.FirstName)
+                First Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer.LastName)
+                Last Name
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer.Balance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentMethod)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Amount)
             </th>
@@ -69,12 +64,6 @@ function ConfirmationDialog() {
                 @Html.DisplayFor(modelItem => item.Customer.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Balance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentMethod)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
@@ -85,11 +74,10 @@ function ConfirmationDialog() {
             </td>
             <td>
                 <a asp-action="Chat" asp-route-id="@item.Id">Chat</a>|
-                <a asp-action="SendConfirmationText" asp-route-id="@item.Id">Confirm Appointment</a>|
                 <a asp-action="SendCustomText">Send Custom Text Message</a>
-                
             </td>
             <td>
+                <a asp-action="SendConfirmationText" asp-route-id="@item.Id">Confirm Appointment</a>|
                 <a asp-action="SubmitCharge" asp-route-id="@item.Id">Appointment Complete</a>
             </td>
         </tr>
