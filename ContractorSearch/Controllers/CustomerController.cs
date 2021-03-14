@@ -84,7 +84,6 @@ namespace ContractorSearch.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
-                customer = await _googleMapsService.GeocodeCustomerAddress(customer);
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -149,17 +148,20 @@ namespace ContractorSearch.Controllers
 
         public async Task<IActionResult> AvailableContractorsIndex(int id)
         {
-            var applicationDbContext = _context.Contractors.ToListAsync();
+
             var customer = _context.Customers.Where(m=>m.Id==id).FirstOrDefault();
-            ViewData["Lat"] = customer.Latitude;
-            ViewData["Long"] = customer.Longitude;
+            customer = await _googleMapsService.GeocodeCustomerAddress(customer);
+            ViewBag.Latitude = customer.Latitude;
+            ViewBag.Longitude = customer.Longitude;
             ViewData["ApiKeys"] = ApiKeys.GoogleMaps;
+            var applicationDbContext = _context.Contractors.Where(m=>m.ZipCode==customer.ZipCode).ToListAsync();
             return View(await applicationDbContext);
         }
 
         public async Task<IActionResult> AvailableAppointments(int? id)
         {
             var applicationDbContext = _context.Appointments.Where(a => a.ContractorId == id).ToListAsync();
+            
             return View(await applicationDbContext);
         }
 
@@ -187,11 +189,15 @@ namespace ContractorSearch.Controllers
             return View(await applicationDbContext);
         }
 
-        public async Task<IActionResult> SeeContractorReviewsAndRating(int contID)
+        public async Task<IActionResult> SeeContractorReviewsAndRating(int? id)
         {
-            var contId = contID;
-            var reviews = _context.Appointments.Where(c => c.ContractorId == contId);
-            return View();
+            var contractor = _context.Contractors.Where(a => a.Id == id).FirstOrDefault();
+            contractor = await _googleMapsService.GeocodeContractorAddress(contractor);
+            ViewBag.Latitude = contractor.Latitude;
+            ViewBag.Longitude = contractor.Longitude;
+            ViewData["ApiKeys"] = ApiKeys.GoogleMaps;
+            var reviews = await _context.Appointments.Where(c => c.ContractorId == id).ToListAsync();
+            return View(reviews);
         }
 
         public IActionResult RateAndReview(int id)

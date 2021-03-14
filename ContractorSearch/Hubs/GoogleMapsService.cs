@@ -14,7 +14,7 @@ namespace ContractorSearch.Hubs
         public GoogleMapsService() { }
         public string CustomerGeocodingURL(Customer customer)
         {
-            return $"https://maps.googleapis.com/maps/api/geocode/json?{customer.AddressLine1}+{customer.AddressLine2}+{customer.City}+{customer.State}+{customer.ZipCode}+&key=" + ApiKeys.GoogleMaps;
+            return $"https://maps.googleapis.com/maps/api/geocode/json?address={customer.AddressLine1}+{customer.AddressLine2}+{customer.City}+{customer.State}+{customer.ZipCode}+&key=" + ApiKeys.GoogleMaps;
         }
         public async Task<Customer> GeocodeCustomerAddress(Customer customer)
         {
@@ -43,7 +43,7 @@ namespace ContractorSearch.Hubs
         }
         public string ContractorGeocodingURL(Contractor contractor)
         {
-            return $"https://maps.googleapis.com/maps/api/geocode/json?{contractor.AddressLine1}+{contractor.AddressLine2}+{contractor.City}+{contractor.State}+{contractor.ZipCode}+&key=" + ApiKeys.GoogleMaps;
+            return $"https://maps.googleapis.com/maps/api/geocode/json?address={contractor.AddressLine1}+{contractor.AddressLine2}+{contractor.City}+{contractor.State}+{contractor.ZipCode}+&key=" + ApiKeys.GoogleMaps;
         }
         public async Task<Contractor> GeocodeContractorAddress(Contractor contractor)
         {

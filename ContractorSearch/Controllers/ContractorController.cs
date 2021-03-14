@@ -90,7 +90,6 @@ namespace ContractorSearch.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 contractor.IdentityUserId = userId;
-                contractor = await _googleMapsService.GeocodeContractorAddress(contractor);
                 _context.Add(contractor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

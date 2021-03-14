@@ -10,15 +10,19 @@
 <p>
     <a asp-action="CurrentAppointments">Current Appointments</a>
     <div id="map" style="height:400px;width:400px;"></div>
-
     <script>
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 8,
-                center: { lat: @ViewBag.Lat, lng: @ViewBag.Long },
+                center: { lat: @ViewBag.Latitude, lng: @ViewBag.Longitude },
+            });
+            const marker = new google.maps.Marker({
+                position: { lat: @ViewBag.Latitude, lng: @ViewBag.Longitude },
+                map: map,
             });
         }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=@(ViewData["ApiKeys"])&callback=initMap"
             async defer></script>
@@ -55,7 +59,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model) 
             {
                 <tr>
                     <td>
@@ -83,7 +87,8 @@
                         @Html.DisplayFor(modelItem => item.IdentityUser.Id)
                     </td>
                     <td>
-                        <a asp-action="AvailableAppointments" asp-route-id="@item.Id">Available Appointments</a>
+                        <a asp-action="AvailableAppointments" asp-route-id="@item.Id">Available Appointments</a>|
+                        <a asp-action="SeeContractorReviewsAndRating" asp-route-id="@item.Id">See Contractor Reviews</a>
                     </td>
                 </tr>
             }
