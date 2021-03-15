@@ -4,83 +4,109 @@
     ViewData["Title"] = "Index";
 }
 <script type="text/javascript">
-function ConfirmationDialog() {
-    if(confirm("Are you sure to continue?"))
-    return true;
-    else
-    return false;
+    function ConfirmationDialog() {
+        if (confirm("Are you sure to continue?"))
+            return true;
+        else
+            return false;
     }
 </script>
-<h1>Appointments</h1>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card-body">
+            <p class="card-text">
+                After a customer has sent you a request, you will be able to contact
+                them with more details via text, chat, or using the contact
+                information provided by the customer. You will then be able
+                to confirm the appointment, which automatically alerts the
+                customer with a text message.
+            </p>
+            <p class="card-text">
+                Finally, once we have confirmed your payment information,
+                you will be able to submit a charge with the click
+                of a button!
+            </p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card-body">
+            <h5 class="card-title">What would you like to do?</h5>
+            <p><a asp-action="CreateAppointments">Create An Appointment</a></p>
+            <p><a asp-action="AvailableAppointments">View Available Appointments</a></p>
+        </div>
+    </div>
+</div>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Appointment Date
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
 
-<p>
-    <a asp-action="CreateAppointments">Create An Appointment</a>
-
-    <a asp-action="AvailableAppointments">Available Appointments</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Appointment Date
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                First Name
-            </th>
-            <th>
-                Last Name
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Review)
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApptDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Review)
-            </td>
-            <td>
-                <a asp-action="Chat" asp-route-id="@item.Id">Chat</a>|
-                <a asp-action="SendCustomText">Send Custom Text Message</a>
-            </td>
-            <td>
-                <a asp-action="SendConfirmationText" asp-route-id="@item.Id">Confirm Appointment</a>|
-                <a asp-action="SubmitCharge" asp-route-id="@item.Id">Appointment Complete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Review)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApptDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Review)
+                </td>
+                <td>
+                    <a asp-action="Chat" asp-route-id="@item.Id">Chat</a>
+                </td>
+                <td>
+                    <a asp-action="SendCustomText">Send A Customized Text Message</a>
+                </td>
+                <td>
+                    <a asp-action="SendConfirmationText" asp-route-id="@item.Id">Confirm Appointment</a>
+                </td>
+                <td>
+                    <a asp-action="SubmitCharge" asp-route-id="@item.Id">Appointment Complete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

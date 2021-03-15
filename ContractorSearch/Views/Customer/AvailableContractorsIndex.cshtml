@@ -5,10 +5,8 @@
     
 }
 
-<h1>AvailableContractorsIndex</h1>
-
+<h5>Contractors In Your Area</h5>
 <p>
-    <a asp-action="CurrentAppointments">Current Appointments</a>
     <div id="map" style="height:400px;width:400px;"></div>
     <script>
         var map;
@@ -27,7 +25,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=@(ViewData["ApiKeys"])&callback=initMap"
             async defer></script>
 </p>
-
     <table class="table">
         <thead>
             <tr>
@@ -53,38 +50,41 @@
                     @Html.DisplayNameFor(model => model.PhoneNumber)
                 </th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model) 
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AddressLine1)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AddressLine2)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.State)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ZipCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
-                    <td>
-                        <a asp-action="AvailableAppointments" asp-route-id="@item.Id">Available Appointments</a>|
-                        <a asp-action="SeeContractorReviewsAndRating" asp-route-id="@item.Id">View Contractor Page</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a asp-action="AvailableAppointments" asp-route-id="@item.Id">Available Appointments</a>
+                </td>
+                <td>
+                    <a asp-action="SeeContractorReviewsAndRating" asp-route-id="@item.Id">View Contractor Page</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
